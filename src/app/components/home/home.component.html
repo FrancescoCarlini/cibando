@@ -1,0 +1,18 @@
+<app-carousel></app-carousel>
+
+<div class="container-title">
+  <h1
+    [ngClass]="evidenziato ? 'testo-evidenziato' : ''"
+    style="cursor: pointer"
+    (click)="onEvidenziazione()"
+  >
+    Benvenuti in cibando
+  </h1>
+  <p [ngStyle]="{ 'background-color': evidenziato ? 'yellow' : '' }">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos necessitatibus
+    labore neque ipsam atque porro consectetur laborum distinctio assumenda
+    mollitia, a, culpa pariatur maxime quae magni modi repellat rerum facilis.
+  </p>
+</div>
+
+<app-recipes></app-recipes>
