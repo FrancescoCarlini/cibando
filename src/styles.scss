@@ -3,6 +3,8 @@
 @import "../node_modules/primeng/resources/primeng.css";
 @import "../node_modules/primeicons/primeicons.css";
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import './app/styles/colori.scss';
 
 body {
   margin: 0;
@@ -10,5 +12,7 @@ body {
   font-family: 'Montserrat', serif;
 }
 
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+.btn-primary:hover {
+  background-color: $primary-color-1!important;
+  border-color: $primary-color-1!important;
+}
