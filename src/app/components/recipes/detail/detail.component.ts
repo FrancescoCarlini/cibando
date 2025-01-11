@@ -21,7 +21,7 @@ export class DetailComponent implements OnInit {
   dettaglioRicetta: Recipe | undefined;
 
   ngOnInit(): void {
-    this.onGetDetail();
+    this.onGetDetail2();
   }
 
   // SE NELLA ROUTE HO POCHI PARAMETRI USO LO SNAPSHOT
