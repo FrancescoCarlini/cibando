@@ -8,10 +8,9 @@ import { RecipeService } from '../../../services/recipe.service';
   standalone: false,
 
   templateUrl: './detail.component.html',
-  styleUrl: './detail.component.scss'
+  styleUrl: './detail.component.scss',
 })
 export class DetailComponent implements OnInit {
-
   private recipeService = inject(RecipeService);
 
   private activatedRoute = inject(ActivatedRoute);
@@ -21,16 +20,16 @@ export class DetailComponent implements OnInit {
   dettaglioRicetta: Recipe | undefined;
 
   ngOnInit(): void {
-    this.onGetDetail2();
+    this.onGetDetail();
   }
 
   // SE NELLA ROUTE HO POCHI PARAMETRI USO LO SNAPSHOT
   onGetDetail() {
-    const ID = Number(this.activatedRoute.snapshot.queryParamMap.get('_id'));
-    if(ID) {
+    const ID = Number(this.activatedRoute.snapshot.paramMap.get('_id'));
+    if (ID) {
       this.recipeService.getRecipeDetail(ID).subscribe({
-        next: (response) => this.dettaglioRicetta = response,
-        error: (e) => console.error(e)
+        next: (response) => (this.dettaglioRicetta = response),
+        error: (e) => console.error(e),
       });
     }
   }
@@ -40,9 +39,11 @@ export class DetailComponent implements OnInit {
     this.activatedRoute.params.subscribe((urlParams) => {
       const ID = urlParams['_id'];
       const ID_NUMERICO = Number(ID);
-      if(ID_NUMERICO) {
-        this.recipeService.getRecipeDetail(ID_NUMERICO).subscribe(res => this.dettaglioRicetta = res);
+      if (ID_NUMERICO) {
+        this.recipeService
+          .getRecipeDetail(ID_NUMERICO)
+          .subscribe((res) => (this.dettaglioRicetta = res));
       }
-    })
+    });
   }
 }
