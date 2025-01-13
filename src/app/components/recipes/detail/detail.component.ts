@@ -19,6 +19,8 @@ export class DetailComponent implements OnInit {
 
   dettaglioRicetta: Recipe | undefined;
 
+  percorso = '../../../../assets/images/difficolta-';
+
   ngOnInit(): void {
     this.onGetDetail();
   }
