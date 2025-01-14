@@ -12,6 +12,13 @@ body {
   font-family: 'Montserrat', serif;
 }
 
+.is-danger {
+  color: rgb(186, 0, 0);
+  font-size: small;
+  position: relative;
+  top: -10px;
+}
+
 .btn-primary:hover {
   background-color: $primary-color-1!important;
   border-color: $primary-color-1!important;
