@@ -17,3 +17,63 @@
 
 <h2>Ultime ricette</h2>
 <app-recipe-card [recipes]="ricette"></app-recipe-card>
+
+<ng-template #modaleUno let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Elimina prodotto</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+      ngbAutofocus
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>
+      Sei sicuro di voler eliminare il prodotto num {{ idModale }}:
+      <strong>{{ nomeModale }}</strong
+      >?
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.dismiss('annulla')"
+    >
+      Annulla
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="modal.close('elimina')"
+    >
+      Conferma
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #modaleRegistrazione let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Grazie per esserti registrato</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <h3>Ecco i tuoi dati:</h3>
+    <ul>
+      <li>Nome: {{ datiRegistrazione["nome"] }}</li>
+      <li>Email: {{ datiRegistrazione["email"] }}</li>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">
+      Chiudi
+    </button>
+  </div>
+</ng-template>

@@ -1,9 +1,9 @@
 <!-- ESEMPIO REACTIVE FORM -->
-<section class="vh-100" style="background-color: #eee">
+<section class="mt-3 mb-3" style="background-color: #eee">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-12 col-xl-11">
-        <div class="card text-black" style="border-radius: 25px">
+        <div class="card text-black border-red">
           <div class="card-body p-md-5">
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
@@ -28,9 +28,7 @@
                         name="name"
                         formControlName="name"
                       />
-                      <label class="form-label" for="form3Example1c"
-                        >Nome</label
-                      >
+                      <label class="form-label" for="name">Nome</label>
                       <p
                         class="is-danger"
                         *ngIf="
@@ -54,9 +52,7 @@
                         name="email"
                         formControlName="email"
                       />
-                      <label class="form-label" for="form3Example3c"
-                        >Email</label
-                      >
+                      <label class="form-label" for="email">Email</label>
                       <p
                         class="is-danger"
                         *ngIf="
@@ -83,16 +79,14 @@
                       data-mdb-input-init
                       class="form-outline flex-fill mb-0"
                     >
-                      <input
-                        type="password"
-                        id="form3Example4c"
+                      <p-password
                         class="form-control"
-                        name="password"
                         formControlName="password"
+                        [toggleMask]="true"
                       />
-                      <label class="form-label" for="form3Example4c"
-                        >Password</label
-                      >
+                      <label class="form-label" for="form3Example4c">
+                        Password
+                      </label>
                       <p
                         class="is-danger"
                         *ngIf="
@@ -121,12 +115,12 @@
                       data-mdb-input-init
                       class="form-outline flex-fill mb-0"
                     >
-                      <input
-                        type="password"
-                        id="form3Example4cd"
+                      <p-password
                         class="form-control"
-                        name="ripetiPassword"
                         formControlName="ripetiPassword"
+                        [toggleMask]="true"
+                        strongRegex="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,15}$"
+                        (ngModelChange)="checkPassword($event)"
                       />
                       <label class="form-label" for="form3Example4cd"
                         >Ripeti password</label
@@ -142,11 +136,7 @@
                       </p>
                       <p
                         class="is-danger"
-                        *ngIf="
-                          form.get('password').value !==
-                            form.get('ripetiPassword').value &&
-                          form.get('ripetiPassword')?.touched
-                        "
+                        *ngIf="!equals && form.get('ripetiPassword')?.touched"
                       >
                         Le due password devono corrispondere
                       </p>
@@ -183,7 +173,7 @@
                       data-mdb-button-init
                       data-mdb-ripple-init
                       class="btn btn-primary btn-lg"
-                      [disabled]="form.invalid"
+                      [disabled]="checkValidationForm()"
                     >
                       Registrati
                     </button>

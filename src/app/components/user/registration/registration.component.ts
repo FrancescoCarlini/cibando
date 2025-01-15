@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -9,6 +11,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent {
+  private router = inject(Router);
+
+  private userService = inject(UserService);
+
+  equals = false;
+
   form = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -22,7 +30,28 @@ export class RegistrationComponent {
     accetto: new FormControl(false, [Validators.requiredTrue]),
   });
 
+  checkPassword(event) {
+    if (event === this.form.controls.password.value) {
+      this.equals = true;
+    } else {
+      this.equals = false;
+    }
+  }
+
+  checkValidationForm(): boolean {
+    if (this.form.invalid || !this.equals) {
+      return true;
+    }
+    return false;
+  }
+
   onSubmit() {
     console.log(this.form.value);
+    const dati = {
+      nome: this.form.controls.name.value,
+      email: this.form.controls.email.value,
+    };
+    this.userService.datiUtente.next(dati);
+    this.router.navigateByUrl('home');
   }
 }
