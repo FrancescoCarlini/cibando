@@ -1,201 +1,199 @@
 <!-- ESEMPIO REACTIVE FORM -->
-<section class="mt-3 mb-3" style="background-color: #eee">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
-        <div class="card text-black border-red">
-          <div class="card-body p-md-5">
-            <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                  Registrazione
-                </p>
+<div class="container h-100 mt-3 mb-3">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-12 col-xl-11">
+      <div class="card text-black border-red">
+        <div class="card-body p-md-5">
+          <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+              <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                Registrazione
+              </p>
 
-                <form
-                  class="mx-1 mx-md-4"
-                  [formGroup]="form"
-                  (ngSubmit)="onSubmit()"
-                >
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <div
-                      data-mdb-input-init
-                      class="form-outline flex-fill mb-0"
-                    >
-                      <input
-                        type="text"
-                        id="form3Example1c"
-                        class="form-control"
-                        name="name"
-                        formControlName="name"
-                      />
-                      <label class="form-label" for="name">Nome</label>
-                      <p
-                        class="is-danger"
-                        *ngIf="
-                          !form.get('name')?.valid && form.get('name')?.touched
-                        "
-                      >
-                        Il campo nome è obbligatorio
-                      </p>
-                    </div>
+              <form
+                class="mx-1 mx-md-4"
+                [formGroup]="form"
+                (ngSubmit)="onSubmit()"
+              >
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="col-lg-1 col-sm-12 mb-2 mr-3">
+                    <i class="pi pi-user" style="font-size: 1.5rem"></i>
                   </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <div
-                      data-mdb-input-init
-                      class="form-outline flex-fill mb-0"
-                    >
-                      <input
-                        type="email"
-                        id="form3Example3c"
-                        class="form-control"
-                        name="email"
-                        formControlName="email"
-                      />
-                      <label class="form-label" for="email">Email</label>
-                      <p
-                        class="is-danger"
-                        *ngIf="
-                          form.controls.email.hasError('required') &&
-                          form.get('email')?.touched
-                        "
-                      >
-                        Il campo email è obbligatorio
-                      </p>
-                      <p
-                        class="is-danger"
-                        *ngIf="
-                          form.controls.email.hasError('email') &&
-                          form.get('email')?.touched
-                        "
-                      >
-                        Il campo email deve contenere un indirizzo email valido
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <div
-                      data-mdb-input-init
-                      class="form-outline flex-fill mb-0"
-                    >
-                      <p-password
-                        class="form-control"
-                        formControlName="password"
-                        [toggleMask]="true"
-                      />
-                      <label class="form-label" for="form3Example4c">
-                        Password
-                      </label>
-                      <p
-                        class="is-danger"
-                        *ngIf="
-                          form.controls.password.hasError('required') &&
-                          form.get('password')?.touched
-                        "
-                      >
-                        Il campo password è obbligatorio
-                      </p>
-                      <p
-                        class="is-danger"
-                        *ngIf="
-                          form.controls.password.hasError('pattern') &&
-                          form.get('password')?.touched
-                        "
-                      >
-                        Il campo password deve contenere almeno un numero, una
-                        lettera maiuscola, un carattere speciale e di min 6
-                        caratteri e max 15 caratteri
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <div
-                      data-mdb-input-init
-                      class="form-outline flex-fill mb-0"
-                    >
-                      <p-password
-                        class="form-control"
-                        formControlName="ripetiPassword"
-                        [toggleMask]="true"
-                        strongRegex="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,15}$"
-                        (ngModelChange)="checkPassword($event)"
-                      />
-                      <label class="form-label" for="form3Example4cd"
-                        >Ripeti password</label
-                      >
-                      <p
-                        class="is-danger"
-                        *ngIf="
-                          form.controls.ripetiPassword.hasError('required') &&
-                          form.get('ripetiPassword')?.touched
-                        "
-                      >
-                        Il campo password è obbligatorio
-                      </p>
-                      <p
-                        class="is-danger"
-                        *ngIf="!equals && form.get('ripetiPassword')?.touched"
-                      >
-                        Le due password devono corrispondere
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="form-check d-flex justify-content-center mb-5">
+                  <div data-mdb-input-init class="form-outline flex-fill mb-0">
                     <input
-                      class="form-check-input me-2"
-                      type="checkbox"
-                      value=""
-                      id="form2Example3c"
-                      name="accetto"
-                      formControlName="accetto"
+                      type="text"
+                      id="form3Example1c"
+                      class="form-control"
+                      name="name"
+                      formControlName="name"
                     />
-                    <label class="form-check-label" for="form2Example3">
-                      Accetto tutti i termini
-                      <a href="#!">Termini di servizio</a>
+                    <label class="form-label" for="name">Nome</label>
+                    <p
+                      class="is-danger"
+                      *ngIf="
+                        !form.get('name')?.valid && form.get('name')?.touched
+                      "
+                    >
+                      Il campo nome è obbligatorio
+                    </p>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="col-lg-1 col-sm-12 mb-2 mr-3">
+                    <i class="pi pi-envelope" style="font-size: 1.5rem"></i>
+                  </div>
+                  <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                    <input
+                      type="email"
+                      id="form3Example3c"
+                      class="form-control"
+                      name="email"
+                      formControlName="email"
+                    />
+                    <label class="form-label" for="email">Email</label>
+                    <p
+                      class="is-danger"
+                      *ngIf="
+                        form.controls.email.hasError('required') &&
+                        form.get('email')?.touched
+                      "
+                    >
+                      Il campo email è obbligatorio
+                    </p>
+                    <p
+                      class="is-danger"
+                      *ngIf="
+                        form.controls.email.hasError('email') &&
+                        form.get('email')?.touched
+                      "
+                    >
+                      Il campo email deve contenere un indirizzo email valido
+                    </p>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="col-lg-1 col-sm-12 mb-2 mr-3">
+                    <i class="pi pi-lock" style="font-size: 1.5rem"></i>
+                  </div>
+                  <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                    <p-password
+                      class="form-control"
+                      formControlName="password"
+                      [toggleMask]="true"
+                    />
+                    <label class="form-label" for="form3Example4c">
+                      Password
                     </label>
                     <p
                       class="is-danger"
                       *ngIf="
-                        !form.get('accetto')?.valid &&
-                        form.get('accetto')?.touched
+                        form.controls.password.hasError('required') &&
+                        form.get('password')?.touched
                       "
                     >
-                      Devi aver accettato i termini e le condizioni
+                      Il campo password è obbligatorio
+                    </p>
+                    <p
+                      class="is-danger"
+                      *ngIf="
+                        form.controls.password.hasError('pattern') &&
+                        form.get('password')?.touched
+                      "
+                    >
+                      Il campo password deve contenere almeno un numero, una
+                      lettera maiuscola, un carattere speciale e di min 6
+                      caratteri e max 15 caratteri
                     </p>
                   </div>
+                </div>
 
-                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button
-                      type="submit"
-                      data-mdb-button-init
-                      data-mdb-ripple-init
-                      class="btn btn-primary btn-lg"
-                      [disabled]="checkValidationForm()"
-                    >
-                      Registrati
-                    </button>
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="col-lg-1 col-sm-12 mb-2 mr-3">
+                    <i class="pi pi-lock" style="font-size: 1.5rem"></i>
                   </div>
-                </form>
-              </div>
-              <div
-                class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
-              >
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                  class="img-fluid"
-                  alt="Sample image"
-                />
-              </div>
+                  <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                    <p-password
+                      class="form-control"
+                      formControlName="ripetiPassword"
+                      [toggleMask]="true"
+                      strongRegex="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){6,15}$"
+                      (ngModelChange)="checkPassword($event)"
+                    />
+                    <label class="form-label" for="form3Example4cd"
+                      >Ripeti password</label
+                    >
+                    <p
+                      class="is-danger"
+                      *ngIf="
+                        form.controls.ripetiPassword.hasError('required') &&
+                        form.get('ripetiPassword')?.touched
+                      "
+                    >
+                      Il campo password è obbligatorio
+                    </p>
+                    <p
+                      class="is-danger"
+                      *ngIf="!equals && form.get('ripetiPassword')?.touched"
+                    >
+                      Le due password devono corrispondere
+                    </p>
+                  </div>
+                </div>
+
+                <div class="form-check d-flex justify-content-center mb-5">
+                  <input
+                    class="form-check-input me-2"
+                    type="checkbox"
+                    value=""
+                    id="form2Example3c"
+                    name="accetto"
+                    formControlName="accetto"
+                  />
+                  <label class="form-check-label" for="form2Example3">
+                    Dichiaro di accettare i
+                    <a href="#!">Termini di servizio</a>
+                  </label>
+                  <p
+                    class="is-danger"
+                    *ngIf="
+                      !form.get('accetto')?.valid &&
+                      form.get('accetto')?.touched
+                    "
+                  >
+                    Devi aver accettato i termini e le condizioni
+                  </p>
+                </div>
+
+                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                  <button
+                    type="submit"
+                    data-mdb-button-init
+                    data-mdb-ripple-init
+                    class="btn btn-primary btn-lg"
+                    [disabled]="checkValidationForm()"
+                  >
+                    Registrati
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div
+              class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2"
+            >
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                class="img-fluid"
+                alt="Sample image"
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ESEMPIO TEMPLATE DRIVEN -->
 <!-- <section class="vh-100" style="background-color: #eee">
