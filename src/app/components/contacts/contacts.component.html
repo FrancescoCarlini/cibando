@@ -1,0 +1,126 @@
+<div class="container h-100 w-75 mt-3 mb-3">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-12 col-xl-11">
+      <div class="card text-black border-red">
+        <div class="card-body p-md-5">
+          <h3 class="card-title text-center">Richiedi informazioni</h3>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row align-items-center">
+              <div class="col-1">
+                <label for="nome">Nome</label>
+              </div>
+              <div class="col-11">
+                <input
+                  type="text"
+                  name="nome"
+                  pInputText
+                  formControlName="nome"
+                />
+              </div>
+            </div>
+
+            <p
+              class="is-danger mt-3 text-center"
+              *ngIf="
+                form.controls.nome.hasError('required') &&
+                form.get('nome').touched
+              "
+            >
+              Il campo nome è obbligatorio
+            </p>
+            <div class="row align-items-center mt-3">
+              <div class="col-1">
+                <label for="email">Email</label>
+              </div>
+              <div class="col-11">
+                <input
+                  type="text"
+                  name="email"
+                  pInputText
+                  formControlName="email"
+                />
+              </div>
+            </div>
+
+            <p
+              class="is-danger mt-3 text-center"
+              *ngIf="
+                form.controls.email.hasError('required') &&
+                form.get('email').touched
+              "
+            >
+              Il campo email è obbligatorio
+            </p>
+            <p
+              class="is-danger mt-3 text-center"
+              *ngIf="
+                form.controls.email.hasError('email') &&
+                form.get('email')?.touched
+              "
+            >
+              Il campo email deve contenere un indirizzo email valido
+            </p>
+            <div class="row align-items-center mt-3">
+              <div class="col-1">
+                <label for="oggetto">Oggetto</label>
+              </div>
+              <div class="col-11">
+                <input
+                  type="text"
+                  name="oggetto"
+                  pInputText
+                  formControlName="oggetto"
+                />
+              </div>
+            </div>
+
+            <p
+              class="is-danger mt-3 text-center"
+              *ngIf="
+                form.controls.oggetto.hasError('required') &&
+                form.get('oggetto').touched
+              "
+            >
+              Il campo oggetto è obbligatorio
+            </p>
+            <div class="row mt-3">
+              <div class="col-12">
+                <label for="messaggio">Messaggio</label>
+                <textarea
+                  rows="5"
+                  cols="50"
+                  name="messaggio"
+                  pInputTextarea
+                  formControlName="messaggio"
+                  [autoResize]="true"
+                ></textarea>
+              </div>
+            </div>
+
+            <p
+              class="is-danger mt-3 text-center"
+              *ngIf="
+                form.controls.messaggio.hasError('required') &&
+                form.get('messaggio').touched
+              "
+            >
+              Il campo messaggio è obbligatorio
+            </p>
+            <div class="row justify-content-center mt-3">
+              <div class="col-2">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  [ngClass]="form.invalid ? 'not-allowed' : ''"
+                  [disabled]="form.invalid"
+                >
+                  Invia
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

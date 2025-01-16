@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { PaginatorModule } from 'primeng/paginator';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 // Componenti
 import { AppComponent } from './app.component';
@@ -18,6 +20,7 @@ import { RecipeCardComponent } from './components/shared/recipe-card/recipe-card
 import { DetailComponent } from './components/recipes/detail/detail.component';
 import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { RegistrationComponent } from './components/user/registration/registrati
     DetailComponent,
     RecipesListComponent,
     RegistrationComponent,
+    ContactsComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,8 @@ import { RegistrationComponent } from './components/user/registration/registrati
     PasswordModule,
     DividerModule,
     PaginatorModule,
+    InputTextModule,
+    InputTextareaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,19 +1,24 @@
-<div class="container-cards">
-  <div class="card" style="width: 18rem" *ngFor="let ricetta of recipes">
-    <div
-      class="card-image"
-      [ngStyle]="{ 'background-image': 'url(' + ricetta.image + ')' }"
-    ></div>
-    <div class="card-body">
-      <h5 class="card-title" (click)="inviaTitolo(ricetta.title)">
-        {{ ricetta.title }}
-      </h5>
-      <p class="card-text">{{ ricetta.description | slice : 0 : 250 }}...</p>
-      <a
-        routerLink="dettaglio/{{ ricetta.title }}/{{ ricetta._id }}"
-        class="btn btn-primary"
-        >Visualizza</a
-      >
-    </div>
+<div class="card" style="width: 18rem">
+  <div
+    class="card-image"
+    [ngStyle]="{ 'background-image': 'url(' + recipe.image + ')' }"
+  ></div>
+  <div class="card-body">
+    <h5 class="card-title" (click)="inviaTitolo(recipe.title)">
+      {{ recipe.title }}
+    </h5>
+    <p class="card-text">{{ recipe.description | slice : 0 : 250 }}...</p>
+    <a
+      *ngIf="page !== 'home'"
+      routerLink="dettaglio/{{ recipe.title }}/{{ recipe._id }}"
+      class="btn btn-primary"
+      >Visualizza</a
+    >
+    <a
+      *ngIf="page === 'home'"
+      routerLink="/ricette/dettaglio/{{ recipe.title }}/{{ recipe._id }}"
+      class="btn btn-primary"
+      >Visualizza</a
+    >
   </div>
 </div>

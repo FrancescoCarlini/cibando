@@ -1,4 +1,4 @@
-@import '../../../styles/colori.scss';
+@import "../../styles/colori.scss";
 
 .border-red {
   border-color: $primary-color-1;
@@ -9,14 +9,4 @@
 .btn-primary {
   background-color: $primary-color-1;
   border-color: $primary-color-1;
-}
-
-.p-component {
-  width: 100%!important;
-  height: 28px;
-
-  .p-inputtext {
-    border: none!important;
-    width: 100%!important;
-  }
 }

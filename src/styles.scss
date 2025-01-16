@@ -24,3 +24,8 @@ body {
   background-color: $primary-color-1!important;
   border-color: $primary-color-1!important;
 }
+
+.not-allowed {
+  pointer-events: all!important;
+  cursor: not-allowed!important;
+}
