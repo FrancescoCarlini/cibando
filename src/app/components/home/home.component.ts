@@ -18,7 +18,7 @@ export class HomeComponent implements AfterViewInit {
 
   ricette: Recipe[] = [];
 
-  datiRegistrazione = {};
+  datiRegistrazione: any = {};
 
   idModale = '';
 
@@ -31,7 +31,12 @@ export class HomeComponent implements AfterViewInit {
   ) {
     this.recipeService.getRecipes().subscribe({
       next: (response) => {
-        this.ricette = response.sort((a, b) => b._id - a._id).slice(0, 4);
+        this.ricette = response
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          )
+          .slice(0, 4);
       },
       error: (e) => console.error(e),
     });
@@ -43,7 +48,7 @@ export class HomeComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.datiRegistrazione) {
+    if (this.datiRegistrazione.nome) {
       this.openModal(this.modale);
     }
   }

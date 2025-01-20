@@ -29,7 +29,7 @@ export class RecipesListComponent {
   size = 4;
 
   constructor(private recipeService: RecipeService) {
-    this.recipeService.getRecipes().subscribe({
+    this.recipeService.getRicette().subscribe({
       next: (response) => {
         this.ricette = response;
       },

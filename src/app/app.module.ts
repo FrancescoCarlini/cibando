@@ -9,6 +9,7 @@ import { DividerModule } from 'primeng/divider';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { HttpClientModule } from '@angular/common/http';
 
 // Componenti
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { DetailComponent } from './components/recipes/detail/detail.component';
 import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
+import { CreateRecipeComponent } from './components/recipes/create-recipe/create-recipe.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
     RecipesListComponent,
     RegistrationComponent,
     ContactsComponent,
+    CreateRecipeComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { ContactsComponent } from './components/contacts/contacts.component';
     PaginatorModule,
     InputTextModule,
     InputTextareaModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
