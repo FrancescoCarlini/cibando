@@ -13,3 +13,13 @@ header {
   width: 50px;
   margin-right: 5px;
 }
+.autenticato {
+  display: flex;
+  color: #ffffff85;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 250px;
+  margin-left: 40px;
+}
