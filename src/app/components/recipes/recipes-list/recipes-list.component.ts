@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Recipe } from '../../../models/recipes.model';
 import { RecipeService } from '../../../services/recipe.service';
+import { map, Observable, take } from 'rxjs';
 
 interface PageEvent {
   first: number;
@@ -17,6 +18,7 @@ interface PageEvent {
   styleUrl: './recipes-list.component.scss',
 })
 export class RecipesListComponent {
+  private recipeService = inject(RecipeService);
   ricette: Recipe[] = [];
 
   titoloRicevuto: string;
@@ -28,13 +30,27 @@ export class RecipesListComponent {
   page = 1;
   size = 4;
 
-  constructor(private recipeService: RecipeService) {
-    this.recipeService.getRicette().subscribe({
-      next: (response) => {
-        this.ricette = response;
-      },
-      error: (e) => console.error(e),
-    });
+  totaleRicette: Recipe[];
+
+  recipes$ = this.recipeService.getRicette().pipe(
+    map((response) =>
+      response.filter((ricetteFiltrate) => ricetteFiltrate.difficulty < 3)
+    ),
+    map((res) => (this.totaleRicette = res))
+  );
+
+  constructor() {
+    // this.getRecipes();
+  }
+
+  getRecipes() {
+    this.recipeService
+      .getRicette()
+      .pipe(take(1))
+      .subscribe({
+        next: (response) => (this.ricette = response),
+        error: (e) => console.error(e),
+      });
   }
 
   riceviTitolo(event: any) {

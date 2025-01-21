@@ -48,10 +48,14 @@ export class RegistrationComponent {
   onSubmit() {
     console.log(this.form.value);
     const dati = {
-      nome: this.form.controls.name.value,
+      name: this.form.controls.name.value,
       email: this.form.controls.email.value,
+      password: this.form.controls.password.value,
+      accetto: this.form.controls.accetto.value,
     };
-    this.userService.datiUtente.next(dati);
-    this.router.navigateByUrl('home');
+    this.userService.signUp(dati).subscribe({
+      next: () => this.router.navigateByUrl('home'),
+      error: (e) => console.error(),
+    });
   }
 }

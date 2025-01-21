@@ -9,6 +9,8 @@ import { DividerModule } from 'primeng/divider';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
 
 // Componenti
@@ -23,6 +25,7 @@ import { RecipesListComponent } from './components/recipes/recipes-list/recipes-
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { CreateRecipeComponent } from './components/recipes/create-recipe/create-recipe.component';
+import { LoginComponent } from './components/user/login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { CreateRecipeComponent } from './components/recipes/create-recipe/create
     RegistrationComponent,
     ContactsComponent,
     CreateRecipeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,8 @@ import { CreateRecipeComponent } from './components/recipes/create-recipe/create
     PaginatorModule,
     InputTextModule,
     InputTextareaModule,
+    FloatLabelModule,
+    ButtonModule,
     HttpClientModule,
   ],
   providers: [],

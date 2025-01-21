@@ -25,7 +25,43 @@ body {
   border-color: $primary-color-1!important;
 }
 
+.container-detail {
+  margin-top: 40px;
+  padding: 20px;
+  h5 {
+    color:  $primary-color-1;
+  }
+  p {
+    color: black!important;
+    text-align: justify;
+  }
+}
+
+.p-component {
+  width: 100%!important;
+  height: 28px;
+
+  .p-inputtext {
+    border: none!important;
+    width: 100%!important;
+  }
+
+}
+
+#container-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 15px;
+}
+
 .not-allowed {
   pointer-events: all!important;
   cursor: not-allowed!important;
 }
+
+// #container-login .container-row .p-component .p-inputtext {
+//   border: 1px solid #dfdfdf !important;
+//   width: 100%!important;
+// }

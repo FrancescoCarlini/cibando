@@ -1,0 +1,38 @@
+<div id="container-login">
+  <form #form="ngForm">
+    <div class="container-row">
+      <p-floatLabel>
+        <input pInputText id="username" ngModel name="email" />
+        <label for="username">Username/email</label>
+      </p-floatLabel>
+    </div>
+
+    <div class="container-row">
+      <p-floatLabel>
+        <p-password
+          ngModel
+          [toggleMask]="true"
+          name="password"
+          feedback="false"
+        />
+        <label for="username">Password</label>
+      </p-floatLabel>
+    </div>
+    <div id="error-message" *ngIf="errorMessage.length">
+      {{ errorMessage }}
+    </div>
+    <div id="container-btn">
+      <p-button
+        label="Accedi"
+        icon="pi pi-check"
+        iconPos="right"
+        (click)="onSubmit(form.value)"
+      />
+    </div>
+  </form>
+  <div id="registrati">
+    <a routerLink="/registrazione"
+      >Se ancora non sei registrato clicca qui per registrarti</a
+    >
+  </div>
+</div>

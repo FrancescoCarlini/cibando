@@ -10,11 +10,13 @@
 <div class="container-cards">
   <div
     class="container-card"
-    *ngFor="let ricetta of ricette | slice : page * size - size : page * size"
+    *ngFor="
+      let ricetta of recipes$ | async | slice : page * size - size : page * size
+    "
   >
     <app-recipe-card
       [recipe]="ricetta"
-      page="recipes"
+      page="totaleRicette"
       (messaggio)="riceviTitolo($event)"
     ></app-recipe-card>
   </div>
@@ -24,7 +26,7 @@
   <p-paginator
     [first]="first"
     [rows]="size"
-    [totalRecords]="ricette.length"
+    [totalRecords]="totaleRicette?.length"
     [rowsPerPageOptions]="[2, 4, 8]"
     (onPageChange)="onPageChange($event)"
   />
