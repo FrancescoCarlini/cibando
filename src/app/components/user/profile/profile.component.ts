@@ -13,6 +13,10 @@ export class ProfileComponent {
   user: User | undefined;
 
   constructor(private userService: UserService) {
+    this.getUser();
+  }
+
+  getUser() {
     const userStored = JSON.parse(localStorage.getItem('user'));
     this.userService.getUser({ email: userStored.email }).subscribe({
       next: (res) => (this.user = res),

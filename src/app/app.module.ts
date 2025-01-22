@@ -11,7 +11,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ButtonModule } from 'primeng/button';
+import { EditorModule } from 'primeng/editor';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 // Componenti
 import { AppComponent } from './app.component';
@@ -58,9 +61,11 @@ import { ProfileComponent } from './components/user/profile/profile.component';
     InputTextareaModule,
     FloatLabelModule,
     ButtonModule,
+    EditorModule,
     HttpClientModule,
+    ToastModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

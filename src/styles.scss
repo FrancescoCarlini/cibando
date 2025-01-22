@@ -5,6 +5,8 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import './app/styles/colori.scss';
+@import "../node_modules/quill/dist/quill.core.css";
+@import "../node_modules/quill/dist/quill.snow.css";
 
 body {
   margin: 0;

@@ -70,24 +70,20 @@
             <div class="row mt-3">
               <div class="col-12">
                 <label for="description">Descrizione</label>
-                <textarea
-                  rows="5"
-                  cols="50"
-                  name="description"
-                  class="form-control"
+                <p-editor
                   formControlName="description"
-                ></textarea>
+                  [style]="{ height: '320px' }"
+                />
               </div>
             </div>
-
             <p
               class="is-danger mt-3 text-center"
               *ngIf="
-                form.controls.difficulty.hasError('required') &&
-                form.get('difficulty').touched
+                form.controls.description.hasError('required') &&
+                form.get('description').touched
               "
             >
-              Il campo difficoltà è obbligatorio
+              Il campo descrizione è obbligatorio
             </p>
             <div class="row justify-content-center mt-3">
               <div class="col-2">

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Recipe } from '../../../models/recipes.model';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-recipe-card',
@@ -9,6 +10,7 @@ import { Recipe } from '../../../models/recipes.model';
   styleUrl: './recipe-card.component.scss',
 })
 export class RecipeCardComponent {
+  private sanitizer = inject(DomSanitizer);
   @Input() recipe: Recipe | undefined;
   @Input() page: string;
 
@@ -16,5 +18,20 @@ export class RecipeCardComponent {
 
   inviaTitolo(title: string) {
     this.messaggio.emit(title);
+  }
+
+  getSanitizedHtml(desc: string): SafeHtml {
+    const tagliaDescrizione = this.accorciaDescrizione(desc);
+    return this.sanitizer.bypassSecurityTrustHtml(tagliaDescrizione);
+  }
+
+  accorciaDescrizione(desc: string): string {
+    const maxLength = 200;
+    if (desc.length <= maxLength) {
+      return desc.slice(0, maxLength);
+    } else {
+      const ultimaPosizioneSpazio = desc.lastIndexOf(' ', maxLength);
+      return desc.slice(0, ultimaPosizioneSpazio) + '...';
+    }
   }
 }

@@ -3,6 +3,7 @@ import { RecipeService } from '../../../services/recipe.service';
 import { Recipe } from '../../../models/recipes.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-create-recipe',
@@ -15,6 +16,8 @@ export class CreateRecipeComponent {
   private recipeService = inject(RecipeService);
 
   private router = inject(Router);
+
+  private toastService = inject(ToastService);
 
   form = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -38,8 +41,14 @@ export class CreateRecipeComponent {
       published: true,
     };
     this.recipeService.addRicetta(ricetta).subscribe({
-      next: () => this.router.navigateByUrl('/ricette'),
-      error: (e) => console.error(e),
+      next: () => {
+        this.toastService.toastSuccesso('Ricetta creata con successo');
+        this.router.navigateByUrl('/ricette');
+      },
+      error: (e) => {
+        this.toastService.toastErrore('Qualcosa è andato storto');
+        console.error(e);
+      },
     });
   }
 }

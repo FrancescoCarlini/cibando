@@ -9,6 +9,8 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { CreateRecipeComponent } from './components/recipes/create-recipe/create-recipe.component';
 import { LoginComponent } from './components/user/login/login.component';
+import { loggedInGuard } from './logged-in.guard';
+import { adminGuard } from './admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -20,13 +22,21 @@ const routes: Routes = [
       { path: '', component: RecipesListComponent, pathMatch: 'full' },
       { path: 'dettaglio/:_id', component: DetailComponent },
       { path: 'dettaglio/:title/:_id', component: DetailComponent },
-      { path: 'aggiungi', component: CreateRecipeComponent },
+      {
+        path: 'aggiungi',
+        component: CreateRecipeComponent,
+        canActivate: [adminGuard],
+      },
     ],
   },
   { path: 'contatti', component: ContactsComponent },
   { path: 'registrazione', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profilo', component: ProfileComponent },
+  {
+    path: 'profilo',
+    component: ProfileComponent,
+    canActivate: [loggedInGuard],
+  },
   { path: '**', redirectTo: 'home' },
 ];
 

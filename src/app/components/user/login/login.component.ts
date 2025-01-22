@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { AuthService } from '../../../services/auth.service';
 export class LoginComponent {
   private router = inject(Router);
   private authService = inject(AuthService);
+  private toastService = inject(ToastService);
   user: any;
   errorMessage = '';
 
@@ -21,14 +23,17 @@ export class LoginComponent {
         next: (res) => {
           this.user = res;
           if (this.user) {
+            this.toastService.toastSuccesso('Login effettuato');
             this.authService.saveStorage(res);
             this.router.navigateByUrl('/home');
           } else {
+            this.toastService.toastErrore('Qualcosa è andato storto');
             this.errorMessage = 'Username/Password errati';
           }
         },
         error: (e) => {
           console.error(e);
+          this.toastService.toastErrore('Qualcosa è andato storto');
           this.errorMessage = 'Username/Password errati';
         },
       });

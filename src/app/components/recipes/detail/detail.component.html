@@ -13,7 +13,7 @@
     <h5 class="card-title">{{ dettaglioRicetta.title }}</h5>
     <div class="row mt-3">
       <div class="col-12">
-        <p>{{ dettaglioRicetta?.description }}</p>
+        <p [innerHTML]="dettaglioRicetta?.description"></p>
       </div>
     </div>
     <div class="row justify-content-start">

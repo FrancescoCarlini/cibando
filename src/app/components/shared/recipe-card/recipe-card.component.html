@@ -7,18 +7,24 @@
     <h5 class="card-title" (click)="inviaTitolo(recipe.title)">
       {{ recipe.title }}
     </h5>
-    <p class="card-text">{{ recipe.description | slice : 0 : 250 }}...</p>
+    <!-- <p class="card-text">{{ recipe.description | slice : 0 : 250 }}...</p> -->
+    <!-- <p class="card-text" [innerHTML]="recipe.description | slice : 0 : 250">
+      ...
+    </p> -->
+    <p class="card-text" [innerHTML]="getSanitizedHtml(recipe.description)"></p>
     <a
       *ngIf="page !== 'home'"
       routerLink="dettaglio/{{ recipe.title }}/{{ recipe._id }}"
       class="btn btn-primary"
-      >Visualizza</a
     >
+      Visualizza
+    </a>
     <a
       *ngIf="page === 'home'"
       routerLink="/ricette/dettaglio/{{ recipe.title }}/{{ recipe._id }}"
       class="btn btn-primary"
-      >Visualizza</a
     >
+      Visualizza
+    </a>
   </div>
 </div>

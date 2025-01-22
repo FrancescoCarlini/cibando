@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-registration',
@@ -15,6 +16,8 @@ export class RegistrationComponent {
 
   private userService = inject(UserService);
 
+  private toastService = inject(ToastService);
+
   equals = false;
 
   form = new FormGroup({
@@ -27,6 +30,7 @@ export class RegistrationComponent {
       ),
     ]),
     ripetiPassword: new FormControl('', [Validators.required]),
+    amministratore: new FormControl(false),
     accetto: new FormControl(false, [Validators.requiredTrue]),
   });
 
@@ -46,16 +50,24 @@ export class RegistrationComponent {
   }
 
   onSubmit() {
-    console.log(this.form.value);
     const dati = {
       name: this.form.controls.name.value,
       email: this.form.controls.email.value,
       password: this.form.controls.password.value,
       accetto: this.form.controls.accetto.value,
+      role: this.form.value.amministratore ? 'admin' : 'user',
     };
     this.userService.signUp(dati).subscribe({
-      next: () => this.router.navigateByUrl('home'),
-      error: (e) => console.error(),
+      next: () => {
+        this.toastService.toastSuccesso('Registrazione avvenuta con successo');
+        this.router.navigateByUrl('home');
+      },
+      error: (e) => {
+        this.toastService.toastErrore(
+          'Qualcosa è andato storto durante la registrazione'
+        );
+        console.error();
+      },
     });
   }
 }
