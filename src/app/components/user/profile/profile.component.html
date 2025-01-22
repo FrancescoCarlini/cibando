@@ -1,0 +1,23 @@
+<div>
+  <div class="row">
+    <h3 class="text-center">Riepilogo dati profilo</h3>
+  </div>
+  <div class="row justify-content-center">
+    <div class="card w-50">
+      <div class="card-body">
+        <p class="card-text">Nome: {{ user?.name }}</p>
+        <p class="card-text">Email: {{ user?.email }}</p>
+        <p class="card-text">
+          Preferenze:
+          {{ user?.preferite.length ? user?.preferite : "Nessuna preferenza" }}
+        </p>
+        <p class="card-text">
+          Profilo creato il: {{ user?.createdAt | date : "dd/MM/yyyy" }}
+        </p>
+        <p class="card-text">
+          Data ultima modifica: {{ user?.updatedAt | date : "dd/MM/yyyy" }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

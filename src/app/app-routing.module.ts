@@ -1,3 +1,4 @@
+import { ProfileComponent } from './components/user/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'contatti', component: ContactsComponent },
   { path: 'registrazione', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profilo', component: ProfileComponent },
   { path: '**', redirectTo: 'home' },
 ];
 
