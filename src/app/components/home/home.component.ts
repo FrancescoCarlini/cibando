@@ -29,7 +29,7 @@ export class HomeComponent implements AfterViewInit {
     private userService: UserService,
     private modalService: NgbModal
   ) {
-    this.recipeService.getRecipes().subscribe({
+    this.recipeService.getRicette().subscribe({
       next: (response) => {
         this.ricette = response
           .sort(

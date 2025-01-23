@@ -1,41 +1,25 @@
-import { ProfileComponent } from './components/user/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { RecipesComponent } from './components/recipes/recipes.component';
-import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
-import { DetailComponent } from './components/recipes/detail/detail.component';
-import { RegistrationComponent } from './components/user/registration/registration.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
-import { CreateRecipeComponent } from './components/recipes/create-recipe/create-recipe.component';
-import { LoginComponent } from './components/user/login/login.component';
-import { loggedInGuard } from './logged-in.guard';
-import { adminGuard } from './admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'contatti', component: ContactsComponent },
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./components/user/user.module').then(
+        (module) => module.UserModule
+      ),
+  },
   {
     path: 'ricette',
-    component: RecipesComponent,
-    children: [
-      { path: '', component: RecipesListComponent, pathMatch: 'full' },
-      { path: 'dettaglio/:_id', component: DetailComponent },
-      { path: 'dettaglio/:title/:_id', component: DetailComponent },
-      {
-        path: 'aggiungi',
-        component: CreateRecipeComponent,
-        canActivate: [adminGuard],
-      },
-    ],
-  },
-  { path: 'contatti', component: ContactsComponent },
-  { path: 'registrazione', component: RegistrationComponent },
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'profilo',
-    component: ProfileComponent,
-    canActivate: [loggedInGuard],
+    loadChildren: () =>
+      import('./components/recipes/recipes.module').then(
+        (module) => module.RecipesModule
+      ),
   },
   { path: '**', redirectTo: 'home' },
 ];

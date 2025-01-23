@@ -40,14 +40,14 @@
           </a>
         </li>
         <li class="nav-item" *ngIf="!authService.isLogged()">
-          <a class="nav-link" routerLink="login">
+          <a class="nav-link" routerLink="user">
             <i class="pi pi-user" style="font-size: 1rem"></i> Accedi/Registrati
           </a>
         </li>
         <li class="nav-item autenticato" *ngIf="authService.isLogged()">
           <div>
             <i class="pi pi-user" style="font-size: 1rem"></i> Ciao
-            {{ user?.name }} - <a routerLink="profilo">Profilo</a> -
+            {{ user?.name }} - <a routerLink="/user/profilo">Profilo</a> -
             <a style="cursor: pointer" (click)="logout()">ESCI</a>
           </div>
         </li>
