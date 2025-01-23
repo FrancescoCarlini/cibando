@@ -10,12 +10,19 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UserComponent } from './user.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
-  declarations: [LoginComponent, ProfileComponent, RegistrationComponent, UserComponent],
+  declarations: [
+    LoginComponent,
+    ProfileComponent,
+    RegistrationComponent,
+    UserComponent,
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,
+    InputTextModule,
     PasswordModule,
     ButtonModule,
     FloatLabelModule,
