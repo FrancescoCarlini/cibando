@@ -1,4 +1,10 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  signal,
+} from '@angular/core';
 import { Recipe } from '../../models/recipes.model';
 import { RecipeService } from '../../services/recipe.service';
 import { UserService } from '../../services/user.service';
@@ -23,6 +29,8 @@ export class HomeComponent implements AfterViewInit {
   idModale = '';
 
   nomeModale = '';
+
+  isLoaded = signal(false);
 
   constructor(
     private recipeService: RecipeService,
@@ -75,5 +83,9 @@ export class HomeComponent implements AfterViewInit {
         console.log('Nessuna azione da eseguire');
         this.userService.datiUtente.next(null);
       });
+  }
+
+  toggle() {
+    this.isLoaded.update((value) => !value);
   }
 }

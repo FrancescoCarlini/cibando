@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { SharedRoutingModule } from './shared-routing.module';
 import { RecipesModule } from '../recipes/recipes.module';
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    ButtonModule,
     HttpClientModule,
     RecipesModule,
   ],
