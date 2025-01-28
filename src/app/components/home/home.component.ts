@@ -37,6 +37,15 @@ export class HomeComponent implements AfterViewInit {
     private userService: UserService,
     private modalService: NgbModal
   ) {
+    this.getRicette();
+
+    this.userService.datiUtente.subscribe((res) => {
+      this.datiRegistrazione = res;
+      console.log(this.datiRegistrazione);
+    });
+  }
+
+  getRicette() {
     this.recipeService.getRicette().subscribe({
       next: (response) => {
         this.ricette = response
@@ -47,11 +56,6 @@ export class HomeComponent implements AfterViewInit {
           .slice(0, 4);
       },
       error: (e) => console.error(e),
-    });
-
-    this.userService.datiUtente.subscribe((res) => {
-      this.datiRegistrazione = res;
-      console.log(this.datiRegistrazione);
     });
   }
 

@@ -1,0 +1,21 @@
+@import "../../../styles/colori.scss";
+
+.image-fixed {
+  height: 550px;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: $primary-color-1;
+}
+
+p {
+  font-size: 14px;
+  color: grey;
+  text-align: justify;
+}
+
+.difficolta {
+  width: 130px;
+}

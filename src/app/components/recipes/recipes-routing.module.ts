@@ -5,6 +5,7 @@ import { RecipesComponent } from './recipes.component';
 import { RecipesListComponent } from './recipes-list/recipes-list.component';
 import { DetailComponent } from './detail/detail.component';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
+import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
       { path: '', component: RecipesListComponent, pathMatch: 'full' },
       { path: 'dettaglio/:_id', component: DetailComponent },
       { path: 'dettaglio/:title/:_id', component: DetailComponent },
+      {
+        path: 'modifica/:title/:_id',
+        component: UpdateRecipeComponent,
+        canActivate: [adminGuard],
+      },
       {
         path: 'aggiungi',
         component: CreateRecipeComponent,

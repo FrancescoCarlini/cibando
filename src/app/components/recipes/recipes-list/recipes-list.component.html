@@ -18,6 +18,7 @@
       [recipe]="ricetta"
       page="totaleRicette"
       (messaggio)="riceviTitolo($event)"
+      (refresh)="getRecipes()"
     ></app-recipe-card>
   </div>
 </div>

@@ -1,0 +1,100 @@
+<div *ngIf="dettaglioRicetta; else noDetail">
+  <div class="row">
+    <div
+      class="col-12 image-fixed"
+      [style]="
+        'background: url(' +
+        dettaglioRicetta?.image +
+        '); background-repeat: no-repeat; background-position: center; background-size: cover;'
+      "
+    ></div>
+  </div>
+  <div class="container h-100 w-75 mt-3 mb-3">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <label for="title">Titolo</label>
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            formControlName="title"
+          />
+        </div>
+        <div class="col-6">
+          <label for="difficulty">DIfficoltà</label>
+          <input
+            type="number"
+            name="difficulty"
+            class="form-control"
+            formControlName="difficulty"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <p
+          class="is-danger mt-3 text-center"
+          *ngIf="
+            form.controls.title.hasError('required') &&
+            form.get('title').touched
+          "
+        >
+          Il campo titolo è obbligatorio
+        </p>
+        <p
+          class="is-danger mt-3 text-center"
+          *ngIf="
+            form.controls.difficulty.hasError('required') &&
+            form.get('difficulty').touched
+          "
+        >
+          Il campo difficoltà è obbligatorio
+        </p>
+        <p
+          class="is-danger mt-3 text-center"
+          *ngIf="
+            (form.controls.difficulty.hasError('min') ||
+              form.controls.difficulty.hasError('max')) &&
+            form.get('difficulty').touched
+          "
+        >
+          La difficoltà deve essere un numero intero compreso tra 1 e 5
+        </p>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <label for="description">Descrizione</label>
+          <p-editor
+            formControlName="description"
+            [style]="{ height: '320px' }"
+          />
+        </div>
+      </div>
+      <p
+        class="is-danger mt-3 text-center"
+        *ngIf="
+          form.controls.description.hasError('required') &&
+          form.get('description').touched
+        "
+      >
+        Il campo descrizione è obbligatorio
+      </p>
+      <div class="row justify-content-center mt-3">
+        <div class="col-2">
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg"
+            [ngClass]="form.invalid ? 'not-allowed' : ''"
+            [disabled]="form.invalid"
+          >
+            Conferma
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #noDetail>
+  <div>Spiacent ricetta non trovata</div>
+</ng-template>

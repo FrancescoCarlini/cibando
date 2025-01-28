@@ -12,6 +12,7 @@ import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { DetailComponent } from './detail/detail.component';
 import { RecipeCardComponent } from '../shared/recipe-card/recipe-card.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
+import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RecipesRoutingModule } from './recipes-routing.module';
     CreateRecipeComponent,
     DetailComponent,
     RecipeCardComponent,
+    UpdateRecipeComponent,
   ],
   imports: [
     CommonModule,

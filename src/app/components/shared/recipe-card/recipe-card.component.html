@@ -26,5 +26,52 @@
     >
       Visualizza
     </a>
+
+    <a
+      *ngIf="page !== 'home'"
+      routerLink="modifica/{{ recipe.title }}/{{ recipe._id }}"
+      class="btn btn-primary"
+      aria-label="Modifica"
+      ><i class="pi pi-pencil"></i>
+    </a>
+    <a
+      *ngIf="page === 'home'"
+      routerLink="/ricette/modifica/{{ recipe.title }}/{{ recipe._id }}"
+      class="btn btn-primary"
+      aria-label="Modifica"
+      ><i class="pi pi-pencil"></i>
+    </a>
+    <button
+      class="btn btn-danger"
+      aria-label="Elimina"
+      (click)="cancella(modale)"
+    >
+      <i class="pi pi-trash"></i>
+    </button>
   </div>
 </div>
+
+<ng-template #modaleElimina let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Attenzione</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.close(false)"
+    ></button>
+  </div>
+  <div class="modal-body">Sei sicuro di voler eliminare la ricetta?</div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      (click)="modal.close(false)"
+    >
+      Chiudi
+    </button>
+    <button type="button" class="btn btn-danger" (click)="modal.close(true)">
+      Conferma
+    </button>
+  </div>
+</ng-template>

@@ -1,6 +1,18 @@
-import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { Recipe } from '../../../models/recipes.model';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RecipeService } from '../../../services/recipe.service';
+import { ToastService } from '../../../services/toast.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-card',
@@ -11,10 +23,17 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class RecipeCardComponent {
   private sanitizer = inject(DomSanitizer);
+  private modalService = inject(NgbModal);
+  private recipeService = inject(RecipeService);
+  private toastService = inject(ToastService);
+
+  @ViewChild('modaleElimina', { static: false }) modale: ElementRef;
+
   @Input() recipe: Recipe | undefined;
   @Input() page: string;
 
   @Output() messaggio = new EventEmitter();
+  @Output() refresh = new EventEmitter();
 
   inviaTitolo(title: string) {
     this.messaggio.emit(title);
@@ -33,5 +52,35 @@ export class RecipeCardComponent {
       const ultimaPosizioneSpazio = desc.lastIndexOf(' ', maxLength);
       return desc.slice(0, ultimaPosizioneSpazio) + '...';
     }
+  }
+
+  cancella(content: any) {
+    this.modalService
+      .open(content, {
+        centered: true,
+        ariaLabelledBy: 'Conferma cancellazione',
+        size: 'lg',
+        role: 'alertdialog',
+      })
+      .result.then((res) => {
+        if (res) {
+          this.recipeService
+            .deleteRicetta(this.recipe._id.toString())
+            .pipe(take(1))
+            .subscribe({
+              next: (res) => {
+                this.toastService.toastSuccesso(
+                  'La ricetta è stata eliminata con successo'
+                );
+                this.refresh.emit();
+              },
+              error: (e) => {
+                this.toastService.toastErrore('Qualcosa è andato storto');
+                console.error(e);
+              },
+            });
+        }
+      })
+      .catch((e) => console.log(e));
   }
 }

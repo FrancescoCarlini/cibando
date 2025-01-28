@@ -41,6 +41,15 @@ export class RecipesListComponent {
 
   constructor() {
     // this.getRecipes();
+    const page = localStorage.getItem('page');
+    const size = localStorage.getItem('size');
+    if (size && page) {
+      this.size = Number(size);
+      this.page = Number(page);
+    } else {
+      localStorage.setItem('size', '' + this.size);
+      localStorage.setItem('page', '' + this.page);
+    }
   }
 
   getRecipes() {
@@ -61,5 +70,7 @@ export class RecipesListComponent {
     event.page = event.page + 1;
     this.page = event.page;
     this.size = event.rows;
+    localStorage.setItem('size', '' + this.size);
+    localStorage.setItem('page', '' + this.page);
   }
 }

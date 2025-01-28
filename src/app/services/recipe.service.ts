@@ -24,6 +24,14 @@ export class RecipeService {
     return this.http.post(`${this.API_BASE_URL}`, ricetta);
   }
 
+  updateRicetta(ricetta: Recipe): Observable<any> {
+    return this.http.put(`${this.API_BASE_URL}/${ricetta._id}`, ricetta);
+  }
+
+  deleteRicetta(id: string): Observable<any> {
+    return this.http.delete(`${this.API_BASE_URL}/${id}`);
+  }
+
   // CHIAMATE MOCK
   getRecipes(): Observable<Recipe[]> {
     return of(RECIPES);
