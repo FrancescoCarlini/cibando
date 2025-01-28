@@ -53,13 +53,12 @@ export class RecipesListComponent {
   }
 
   getRecipes() {
-    this.recipeService
-      .getRicette()
-      .pipe(take(1))
-      .subscribe({
-        next: (response) => (this.ricette = response),
-        error: (e) => console.error(e),
-      });
+    this.recipes$ = this.recipeService.getRicette().pipe(
+      map((response) =>
+        response.filter((ricetteFiltrate) => ricetteFiltrate.difficulty < 3)
+      ),
+      map((res) => (this.totaleRicette = res))
+    );
   }
 
   riceviTitolo(event: any) {

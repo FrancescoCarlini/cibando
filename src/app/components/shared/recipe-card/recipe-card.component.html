@@ -28,20 +28,21 @@
     </a>
 
     <a
-      *ngIf="page !== 'home'"
+      *ngIf="page !== 'home' && user?.role === 'admin'"
       routerLink="modifica/{{ recipe.title }}/{{ recipe._id }}"
       class="btn btn-primary"
       aria-label="Modifica"
       ><i class="pi pi-pencil"></i>
     </a>
     <a
-      *ngIf="page === 'home'"
+      *ngIf="page === 'home' && user?.role === 'admin'"
       routerLink="/ricette/modifica/{{ recipe.title }}/{{ recipe._id }}"
       class="btn btn-primary"
       aria-label="Modifica"
       ><i class="pi pi-pencil"></i>
     </a>
     <button
+      *ngIf="user?.role === 'admin'"
       class="btn btn-danger"
       aria-label="Elimina"
       (click)="cancella(modale)"

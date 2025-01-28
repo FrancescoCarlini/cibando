@@ -38,7 +38,8 @@ export class HomeComponent implements AfterViewInit {
     private modalService: NgbModal
   ) {
     this.getRicette();
-
+    localStorage.removeItem('size');
+    localStorage.removeItem('page');
     this.userService.datiUtente.subscribe((res) => {
       this.datiRegistrazione = res;
       console.log(this.datiRegistrazione);

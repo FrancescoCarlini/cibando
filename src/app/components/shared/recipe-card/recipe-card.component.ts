@@ -13,6 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeService } from '../../../services/recipe.service';
 import { ToastService } from '../../../services/toast.service';
 import { take } from 'rxjs';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-recipe-card',
@@ -34,6 +35,12 @@ export class RecipeCardComponent {
 
   @Output() messaggio = new EventEmitter();
   @Output() refresh = new EventEmitter();
+
+  user: User;
+
+  constructor() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+  }
 
   inviaTitolo(title: string) {
     this.messaggio.emit(title);
