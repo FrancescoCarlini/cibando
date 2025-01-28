@@ -1,4 +1,5 @@
 import {
+  AfterContentInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -22,7 +23,7 @@ import { User } from '../../../models/user.model';
   templateUrl: './recipe-card.component.html',
   styleUrl: './recipe-card.component.scss',
 })
-export class RecipeCardComponent {
+export class RecipeCardComponent implements AfterContentInit {
   private sanitizer = inject(DomSanitizer);
   private modalService = inject(NgbModal);
   private recipeService = inject(RecipeService);
@@ -30,16 +31,34 @@ export class RecipeCardComponent {
 
   @ViewChild('modaleElimina', { static: false }) modale: ElementRef;
 
-  @Input() recipe: Recipe | undefined;
+  @Input() recipe: Recipe;
   @Input() page: string;
 
   @Output() messaggio = new EventEmitter();
   @Output() refresh = new EventEmitter();
+  @Output() preferito = new EventEmitter();
 
   user: User;
 
+  isPreferite = false;
+
   constructor() {
     this.user = JSON.parse(localStorage.getItem('user'));
+  }
+
+  ngAfterContentInit(): void {
+    this.checkPreferite();
+  }
+
+  checkPreferite() {
+    if (this.user?.preferite?.length) {
+      const ricetta = this.user.preferite.find(
+        (idRicetta) => idRicetta === this.recipe._id
+      );
+      if (ricetta) {
+        this.isPreferite = true;
+      }
+    }
   }
 
   inviaTitolo(title: string) {
@@ -59,6 +78,14 @@ export class RecipeCardComponent {
       const ultimaPosizioneSpazio = desc.lastIndexOf(' ', maxLength);
       return desc.slice(0, ultimaPosizioneSpazio) + '...';
     }
+  }
+
+  modificaPreferito() {
+    this.isPreferite = !this.isPreferite;
+    this.preferito.emit({
+      idRicetta: this.recipe._id,
+      isPreferite: this.isPreferite,
+    });
   }
 
   cancella(content: any) {

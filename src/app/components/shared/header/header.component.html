@@ -51,6 +51,11 @@
             <a style="cursor: pointer" (click)="logout()">ESCI</a>
           </div>
         </li>
+        <li class="nav-item" *ngIf="authService.isLogged()">
+          <a class="nav-link" routerLink="preferiti">
+            <i class="pi pi-heart" style="font-size: 1rem"></i> Preferiti
+          </a>
+        </li>
         <!-- <li class="nav-item">
           <a class="nav-link" routerLink="registrazione">
             <i class="pi pi-envelope" style="font-size: 1rem"></i> Registrazione

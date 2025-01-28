@@ -10,6 +10,7 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { RecipesModule } from '../recipes/recipes.module';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { PreferitesComponent } from '../preferites/preferites.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ButtonModule } from 'primeng/button';
     CarouselComponent,
     ContactsComponent,
     HeaderComponent,
+    PreferitesComponent,
   ],
   imports: [
     CommonModule,

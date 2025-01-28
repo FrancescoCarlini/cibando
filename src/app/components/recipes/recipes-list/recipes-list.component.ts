@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Recipe } from '../../../models/recipes.model';
 import { RecipeService } from '../../../services/recipe.service';
-import { map, Observable, take } from 'rxjs';
+import { map } from 'rxjs';
 
 interface PageEvent {
   first: number;

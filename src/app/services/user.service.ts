@@ -19,4 +19,8 @@ export class UserService {
   getUser(body: any) {
     return this.http.post<User>(`${this.apiBaseUrl}/user`, body);
   }
+
+  updateUser(body: any) {
+    return this.http.put(`${this.apiBaseUrl}/${body._id}`, body);
+  }
 }

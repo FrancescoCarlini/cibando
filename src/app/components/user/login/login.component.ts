@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ToastService } from '../../../services/toast.service';
+import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
   onSubmit(formValue) {
     if (formValue.email !== '' && formValue.password !== '') {
       this.authService.login(formValue.email, formValue.password).subscribe({
-        next: (res) => {
+        next: (res: User) => {
           this.user = res;
           if (this.user) {
             this.toastService.toastSuccesso('Login effettuato');

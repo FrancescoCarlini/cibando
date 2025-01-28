@@ -26,7 +26,14 @@
     >
       Visualizza
     </a>
-
+    <button
+      *ngIf="page !== 'home' && user !== null"
+      class="btn btn-danger"
+      aria-label="Togli dai preferiti"
+      (click)="modificaPreferito()"
+    >
+      <i [ngClass]="isPreferite ? 'pi pi-heart-fill' : 'pi pi-heart'"></i>
+    </button>
     <a
       *ngIf="page !== 'home' && user?.role === 'admin'"
       routerLink="modifica/{{ recipe.title }}/{{ recipe._id }}"

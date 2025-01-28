@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PreferitesComponent } from './components/preferites/preferites.component';
+import { loggedInGuard } from './logged-in.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,6 +25,11 @@ const routes: Routes = [
       import('./components/recipes/recipes.module').then(
         (module) => module.RecipesModule
       ),
+  },
+  {
+    path: 'preferiti',
+    component: PreferitesComponent,
+    canActivate: [loggedInGuard],
   },
   { path: '**', redirectTo: 'home' },
 ];

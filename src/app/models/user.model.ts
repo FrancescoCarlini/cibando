@@ -5,7 +5,7 @@ export interface User {
   password: string;
   note: string;
   role: string;
-  preferite?: [];
+  preferite?: any[];
   createdAt: string | Date;
   updatedAt: string | Date;
 }
