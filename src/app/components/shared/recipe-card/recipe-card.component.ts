@@ -35,7 +35,6 @@ export class RecipeCardComponent implements AfterContentInit {
   @Input() page: string;
 
   @Output() messaggio = new EventEmitter();
-  @Output() refresh = new EventEmitter();
   @Output() preferito = new EventEmitter();
 
   user: User;
@@ -106,7 +105,6 @@ export class RecipeCardComponent implements AfterContentInit {
                 this.toastService.toastSuccesso(
                   'La ricetta è stata eliminata con successo'
                 );
-                this.refresh.emit();
               },
               error: (e) => {
                 this.toastService.toastErrore('Qualcosa è andato storto');

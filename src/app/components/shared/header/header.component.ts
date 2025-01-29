@@ -1,6 +1,7 @@
 import { Component, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { RECIPES_CATEGORY } from '../../../models/category.const';
 
 interface User {
   _id: string;
@@ -21,6 +22,14 @@ export class HeaderComponent implements DoCheck {
 
   user: User;
 
+  categorie = RECIPES_CATEGORY;
+
+  modelRicerca = {
+    categoriaSelezionata: '',
+    text: '',
+    difficulty: 1,
+  };
+
   constructor(private router: Router, public authService: AuthService) {}
 
   ngDoCheck(): void {
@@ -32,5 +41,10 @@ export class HeaderComponent implements DoCheck {
   logout() {
     this.authService.logout();
     this.router.navigateByUrl('/login');
+  }
+
+  searchRecipes() {
+    localStorage.setItem('filters', JSON.stringify(this.modelRicerca));
+    this.router.navigateByUrl('ricette');
   }
 }

@@ -4,6 +4,7 @@ import { Recipe } from '../../../models/recipes.model';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../services/toast.service';
+import { RECIPES_CATEGORY } from '../../../models/category.const';
 
 @Component({
   selector: 'app-create-recipe',
@@ -19,10 +20,13 @@ export class CreateRecipeComponent {
 
   private toastService = inject(ToastService);
 
+  categorie = RECIPES_CATEGORY;
+
   form = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     image: new FormControl('', []),
+    category: new FormControl('', [Validators.required]),
     difficulty: new FormControl(1, [
       Validators.required,
       Validators.min(1),
@@ -37,6 +41,7 @@ export class CreateRecipeComponent {
       description: this.form.value.description,
       image: this.form.value.image,
       difficulty: Number(this.form.value.difficulty),
+      category: this.form.value.category,
       date: new Date().toLocaleDateString(),
       published: true,
     };

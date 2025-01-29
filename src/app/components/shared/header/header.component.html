@@ -63,5 +63,42 @@
         </li> -->
       </ul>
     </div>
+    <div class="row justify-content-end align-items-center">
+      <div class="col-5">
+        <label class="text-white" for="category">Categoria</label>
+        <select
+          id="category"
+          class="form-control"
+          [(ngModel)]="modelRicerca.categoriaSelezionata"
+        >
+          @for (categoria of categorie; track $index) {
+          <option [value]="categoria.value">{{ categoria.name }}</option>
+          }
+        </select>
+      </div>
+      <div class="col-3">
+        <label class="text-white" for="text">Testo</label>
+        <input
+          id="text"
+          class="form-control"
+          type="text"
+          [(ngModel)]="modelRicerca.text"
+        />
+      </div>
+      <div class="col-2">
+        <label class="text-white" for="difficulty">DIfficoltà</label>
+        <input
+          id="difficulty"
+          class="form-control"
+          type="number"
+          [min]="1"
+          [max]="5"
+          [(ngModel)]="modelRicerca.difficulty"
+        />
+      </div>
+      <div class="col-2 mt-4">
+        <button class="btn btn-primary" (click)="searchRecipes()">Cerca</button>
+      </div>
+    </div>
   </nav>
 </header>

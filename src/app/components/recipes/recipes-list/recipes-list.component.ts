@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Recipe } from '../../../models/recipes.model';
 import { RecipeService } from '../../../services/recipe.service';
-import { map } from 'rxjs';
+import { map, take } from 'rxjs';
 
 interface PageEvent {
   first: number;
@@ -19,6 +19,7 @@ interface PageEvent {
 })
 export class RecipesListComponent {
   private recipeService = inject(RecipeService);
+
   ricette: Recipe[] = [];
 
   titoloRicevuto: string;
@@ -32,15 +33,11 @@ export class RecipesListComponent {
 
   totaleRicette: Recipe[];
 
-  recipes$ = this.recipeService.getRicette().pipe(
-    map((response) =>
-      response.filter((ricetteFiltrate) => ricetteFiltrate.difficulty < 3)
-    ),
-    map((res) => (this.totaleRicette = res))
-  );
+  filtri: any;
 
   constructor() {
-    // this.getRecipes();
+    this.getRecipes();
+    this.filtri = JSON.parse(localStorage.getItem('filters'));
     const page = localStorage.getItem('page');
     const size = localStorage.getItem('size');
     if (size && page) {
@@ -53,12 +50,25 @@ export class RecipesListComponent {
   }
 
   getRecipes() {
-    this.recipes$ = this.recipeService.getRicette().pipe(
-      map((response) =>
-        response.filter((ricetteFiltrate) => ricetteFiltrate.difficulty < 3)
-      ),
-      map((res) => (this.totaleRicette = res))
-    );
+    this.recipeService
+      .getRicette()
+      .pipe(take(1))
+      .subscribe({
+        next: (res) => {
+          if (this.filtri) {
+            this.ricette = res.filter(
+              (recipe) =>
+                recipe.category === this.filtri.categoriaSelezionata ||
+                recipe.title.search(this.filtri.text) !== -1 ||
+                recipe.description.search(this.filtri.text) !== -1 ||
+                recipe.difficulty === this.filtri.difficulty
+            );
+          } else {
+            this.ricette = res;
+          }
+        },
+        error: (e) => console.error(e),
+      });
   }
 
   riceviTitolo(event: any) {

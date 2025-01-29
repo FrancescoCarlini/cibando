@@ -40,6 +40,7 @@ export class HomeComponent implements AfterViewInit {
     this.getRicette();
     localStorage.removeItem('size');
     localStorage.removeItem('page');
+    localStorage.removeItem('filters');
     this.userService.datiUtente.subscribe((res) => {
       this.datiRegistrazione = res;
       console.log(this.datiRegistrazione);

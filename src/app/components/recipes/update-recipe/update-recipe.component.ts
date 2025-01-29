@@ -5,6 +5,7 @@ import { RecipeService } from '../../../services/recipe.service';
 import { ToastService } from '../../../services/toast.service';
 import { Recipe } from '../../../models/recipes.model';
 import { take } from 'rxjs';
+import { RECIPES_CATEGORY } from '../../../models/category.const';
 
 @Component({
   selector: 'app-update-recipe',
@@ -18,15 +19,16 @@ export class UpdateRecipeComponent {
 
   private activatedRoute = inject(ActivatedRoute);
 
-  private router = inject(Router);
-
   private toastService = inject(ToastService);
 
   dettaglioRicetta: Recipe;
 
+  categorie = RECIPES_CATEGORY;
+
   form = new FormGroup({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
+    category: new FormControl('', [Validators.required]),
     difficulty: new FormControl(1, [
       Validators.required,
       Validators.min(1),
@@ -55,6 +57,7 @@ export class UpdateRecipeComponent {
     this.form.controls.title.setValue(this.dettaglioRicetta.title);
     this.form.controls.difficulty.setValue(this.dettaglioRicetta.difficulty);
     this.form.controls.description.setValue(this.dettaglioRicetta.description);
+    this.form.controls.category.setValue(this.dettaglioRicetta.category);
   }
 
   onSubmit() {
@@ -63,6 +66,7 @@ export class UpdateRecipeComponent {
       title: this.form.value.title,
       description: this.form.value.description,
       image: this.dettaglioRicetta.image,
+      category: this.form.value.category,
       difficulty: this.form.value.difficulty,
       published: this.dettaglioRicetta.published,
     };
@@ -72,7 +76,6 @@ export class UpdateRecipeComponent {
       .subscribe({
         next: (res) => {
           this.toastService.toastSuccesso('Ricetta modificata con successo');
-          this.router.navigateByUrl('/ricette');
         },
         error: (e) => {
           this.toastService.toastErrore('La ricetta non può essere modificata');
